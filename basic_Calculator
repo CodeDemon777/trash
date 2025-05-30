@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+class Calculator {
+    private String operation; // Instance variable
+
+    // Custom constructor
+    public Calculator(String operation) {
+        this.operation = operation;
+        System.out.println("Calculator initialized for " + operation);
+    }
+
+    // Methods
+    public int add(int n1, int n2) {
+        return n1 + n2;
+    }
+
+    public int sub(int n1, int n2) {
+        return n1 - n2;
+    }
+
+    public int mul(int n1, int n2) {
+        return n1 * n2;
+    }
+
+    public int div(int n1, int n2) {
+        if (n2 == 0) {
+            System.out.println("Error: Division by zero is not allowed.");
+            return 0;
+        }
+        return n1 / n2;
+    }
+
+    public int mod(int n1, int n2) {
+        if (n2 == 0) {
+            System.out.println("Error: Modulo by zero is not allowed.");
+            return 0;
+        }
+        return n1 % n2;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        // Prompt the user for input
+        System.out.println("Enter the operation you need to perform:");
+        System.out.println("""
+                For addition - add
+                For subtraction - sub
+                For multiplication - mul
+                For division - div
+                For modulo - mod
+                """);
+
+        String operation = scan.nextLine(); // Read the operation
+
+        // Create a Calculator object with the selected operation
+        Calculator cal = new Calculator(operation);
+
+        System.out.println("Enter the two numbers:");
+        int num1 = scan.nextInt();
+        int num2 = scan.nextInt();
+
+        // Perform the operation based on user input
+        switch (operation) {
+            case "add":
+                System.out.println("Result: " + cal.add(num1, num2));
+                break;
+            case "sub":
+                System.out.println("Result: " + cal.sub(num1, num2));
+                break;
+            case "mul":
+                System.out.println("Result: " + cal.mul(num1, num2));
+                break;
+            case "div":
+                System.out.println("Result: " + cal.div(num1, num2));
+                break;
+            case "mod":
+                System.out.println("Result: " + cal.mod(num1, num2));
+                break;
+            default:
+                System.out.println("Enter the correct operation or recheck the operation and values.");
+        }
+
+        scan.close();
+    }
+}
